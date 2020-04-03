@@ -13,10 +13,10 @@ app.use(express.json());
 
 // Page-displaying Routes
 app.get("/notes", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/notes.html"));
+  res.sendFile(path.join(__dirname, "/notes.html"));
 });
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 // GET Routes
@@ -77,7 +77,7 @@ app.delete("/api/notes/:id", function (req, res) {
 
 // Catch-all route
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 // Listening to port

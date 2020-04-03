@@ -28,6 +28,27 @@ app.get("/api/notes", function(req, res) {
   });
 });
 
+// POST Routes
+app.post("/api/notes", function(req, res) {
+  var newNote = req.body;
+  var savedNotes;
+  console.log(newNote);
+  // Get current data from db.json
+  fs.readFile("./../../../db/db.json", "utf8", (err, data) => {
+    if (err) throw err;
+    console.log("File successfully read!");
+    savedNotes = JSON.parse(data);
+    savedNotes.push(newNote);
+    fs.writeFile("./../../../db/db.json", JSON.stringify(savedNotes), function(
+      err
+    ) {
+      if (err) throw err;
+      console.log("Note successfully saved!");
+      return res.json(newNote);
+    });
+  });
+});
+
 // Listening to port
 app.listen(PORT, function() {
   console.log(

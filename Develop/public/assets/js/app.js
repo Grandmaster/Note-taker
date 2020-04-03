@@ -12,11 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Page-displaying Routes
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../index.html"));
-});
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "../../notes.html"));
+});
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../index.html"));
 });
 
 // GET Routes
@@ -77,6 +77,11 @@ app.delete("/api/notes/:id", function (req, res) {
       res.end();
     });
   });
+});
+
+// Catch-all route
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../index.html"));
 });
 
 // Listening to port
